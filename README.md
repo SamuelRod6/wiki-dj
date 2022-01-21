@@ -1,2 +1,1 @@
 # wikiCS
-A wiki
