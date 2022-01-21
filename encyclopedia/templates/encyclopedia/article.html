@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if entry_title in entries %}
+        {{ title }}
+    {% else %}
+        Page not found
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if entry_title in entries %}
+        {{ entry|safe }}
+        <form action="{{ title }}/edit">
+            <input class="btn btn-secondary" type="submit" value="Edit entry">
+        </form>
+    {% else %}
+        <h1>Page not found</h1>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create a new page
+{% endblock %}
+
+{% block body %}
+    {% if exists %}
+        <h1>Page already created!</h1>
+        <h5>The entry you are trying to create already exists in <a href="/wiki/{{ title }}"> {{ title }} </a></h5>
+    {% else %}
+        <h1>Create a new entry:</h1>
+        <form action="{% url 'newpage' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control col-md-8 col-lg-8" type="text" name="title" placeholder="Entry title" autocomplete="off" autofocus>
+            <textarea style="resize: none;" class="form-control col-md-8 col-lg-8" name="entry" rows="10" cols="10" placeholder="Write your entry with markdown language"></textarea>
+            <input class="btn btn-secondary" type="submit" value="Save">
+        </form>
+    {% endif %}
+{% endblock %}
